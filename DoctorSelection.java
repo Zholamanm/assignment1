@@ -41,10 +41,6 @@ public class DoctorSelection implements SelectionStrategy {
         }
     }
 
-    public String getSelectedSpeciality() {
-        return selectedSpeciality;
-    }
-
     public int getSelectedDoctorId() {
         return selectedDoctorId;
     }

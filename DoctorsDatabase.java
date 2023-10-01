@@ -45,7 +45,7 @@ public class DoctorsDatabase {
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) == 0; // если записей нет, то время доступно
+                return rs.getInt(1) == 0;
             }
 
         } catch (SQLException e) {

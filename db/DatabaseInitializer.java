@@ -10,8 +10,8 @@ public class DatabaseInitializer {
                     "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                     "name VARCHAR(255) NOT NULL," +
                     "speciality VARCHAR(255) NOT NULL," +
-                    "appointment_time TIME," +  // новая колонка для времени записи
-                    "initial_fee DECIMAL(10, 2) NOT NULL DEFAULT 0.00" +  // новая колонка для цены
+                    "appointment_time TIME," +
+                    "initial_fee DECIMAL(10, 2) NOT NULL DEFAULT 0.00" +
                     ")");
             stmt.execute("CREATE TABLE IF NOT EXISTS appointments (" +
                     "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
@@ -29,12 +29,10 @@ public class DatabaseInitializer {
         try (Connection conn = DatabaseConnection.getConnection();
              Statement stmt = conn.createStatement()) {
 
-            // Проверяем, есть ли уже записи в таблице doctors
             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM doctors");
             rs.next();
             int rowCount = rs.getInt(1);
 
-            // Если записей нет, то добавляем начальные данные
             if (rowCount == 0) {
                 stmt.execute("INSERT INTO doctors (name, speciality) VALUES ('Окулист Анна', 'Окулист'), ('Окулист Виктор', 'Окулист'), ('Терапевт Ирина', 'Терапевт'), ('Терапевт Максим', 'Терапевт'), ('Хирург Олег', 'Хирург'), ('Хирург Лилия', 'Хирург')");
             }

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/doctors_db";
-    private static final String USER = "mysql";  // замените на ваше имя пользователя MySQL
-    private static final String PASSWORD = "123456";  // замените на ваш пароль от MySQL
+    private static final String USER = "mysql";
+    private static final String PASSWORD = "123456";
     private static Connection connection;
 
     public static Connection getConnection() {

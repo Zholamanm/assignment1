@@ -13,7 +13,4 @@ public class Clinic {
         }
         return instance;
     }
-    public void makeDoctorAppointment(Doctor doctor) {
-        doctor.makeAppointment();
-    }
 }
