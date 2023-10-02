@@ -10,23 +10,8 @@ public class Main {
         DoctorsDatabase database = new DoctorsDatabase();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите ваше имя: ");
-        String patientName = scanner.nextLine();
-
-        DoctorSelection doctorStrategy = new DoctorSelection();
-        doctorStrategy.execute(database, scanner);
-
-        TimeSelection timeStrategy = new TimeSelection();
-        timeStrategy.execute(database, scanner);
-
-        int doctorId = doctorStrategy.getSelectedDoctorId();
-        String time = timeStrategy.getSelectedTime();
-        if (database.isTimeAvailable(doctorId, time)) {
-            database.addAppointment(doctorId, time, patientName);
-            System.out.println("Вы успешно записались на " + time);
-        } else {
-            System.out.println("Выбранное время недоступно. Пожалуйста, попробуйте еще раз.");
-        }
+        UserInterfaceManager uiManager = new UserInterfaceManager(database, scanner);
+        uiManager.showMainMenu();
 
         scanner.close();
         database.closeConnection();

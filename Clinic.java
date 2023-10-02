@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Clinic {
     private static Clinic instance;
+    private List<Doctor> doctors = new ArrayList<>();
 
     private Clinic() {}
 
