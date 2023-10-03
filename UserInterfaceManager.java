@@ -142,8 +142,10 @@ public class UserInterfaceManager {
             }
         }
 
+        Doctor doctor = database.getDoctorById(doctorId);
         if (isDoctorBusy) {
-            System.out.println("Доктор " + doctorStrategy.getSelectedDoctorName() + " будет занят в течение следующего часа.");
+            System.out.println("Доктор " + doctorStrategy.getSelectedDoctorName() + " " );
+            doctor.applyTreatment();
         } else {
             System.out.println("Доктор " + doctorStrategy.getSelectedDoctorName() + " свободен в ближайший час.");
         }
