@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Date;
-import java.time.LocalTime;
 
 public class UserInterfaceManager {
 
@@ -21,6 +20,8 @@ public class UserInterfaceManager {
         System.out.println("1. Информация о докторах");
         System.out.println("2. Получение справок");
         System.out.println("3. Запись на прием");
+        System.out.println("4. Поиск докторов которые сейчас свободны");
+        System.out.println("5. Поиск медикаментов");
         System.out.print("Введите номер выбора: ");
 
         int mainChoice = scanner.nextInt();
@@ -34,10 +35,30 @@ public class UserInterfaceManager {
             case 3:
                 bookAppointment();
                 break;
+            case 4:
+                findDoctorAvailable();
+                break;
+            case 5:
+                showMedInfo();
+                break;
             default:
                 System.out.println("Неверный выбор.");
                 break;
         }
+    }
+
+    private void showMedInfo() {
+        Clinic clinic = Clinic.getInstance();
+        Medication med1 = new Medication("Аспирин", "Обезболивающее", 50.00);
+        clinic.addMedication(med1);
+        Medication med2 = new Medication("Ибупрофен", "Обезболивающее", 100.00);
+        clinic.addMedication(med2);
+        Medication med3 = new Medication("Нимесил", "Обезболивающее", 150.00);
+        clinic.addMedication(med3);
+        Medication med4 = new Medication("Парацетамол", "Обезболивающее", 100.00);
+        clinic.addMedication(med4);
+        System.out.println(clinic.getAllMedications());
+
     }
 
     private void showDoctorInformation() {
@@ -88,5 +109,45 @@ public class UserInterfaceManager {
             }
         }
     }
+    public void findDoctorAvailable() {
+        DoctorSelection doctorStrategy = new DoctorSelection();
+        doctorStrategy.execute(database, scanner);
+        scanner.nextLine();
+
+        int doctorId = doctorStrategy.getSelectedDoctorId();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
+        String currentFormattedDate = sdf.format(new Date());
+
+        Date appointmentTime = null;
+        try {
+            appointmentTime = sdf.parse(currentFormattedDate);
+        } catch (ParseException e) {
+            System.out.println("Произошла ошибка: " + e.getMessage());
+            return;
+        }
+
+        Timestamp currentTime = new Timestamp(appointmentTime.getTime());
+        Timestamp endTime = new Timestamp(appointmentTime.getTime() + 3600 * 1000);
+
+        boolean isDoctorBusy = true;
+        for (long time = currentTime.getTime(); time < endTime.getTime(); time += 60 * 1000) {
+            Timestamp checkTime = new Timestamp(time);
+            if (database.isTimeAvailable(doctorId, checkTime)) {
+                isDoctorBusy = false;
+            }
+            else {
+                isDoctorBusy = true;
+                break;
+            }
+        }
+
+        if (isDoctorBusy) {
+            System.out.println("Доктор " + doctorStrategy.getSelectedDoctorName() + " будет занят в течение следующего часа.");
+        } else {
+            System.out.println("Доктор " + doctorStrategy.getSelectedDoctorName() + " свободен в ближайший час.");
+        }
+    }
+
 
 }

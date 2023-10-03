@@ -6,7 +6,6 @@ public class Main {
         DatabaseInitializer.initialize();
         DatabaseInitializer.insertInitialData();
 
-        Clinic clinic = Clinic.getInstance();
         DoctorsDatabase database = new DoctorsDatabase();
         Scanner scanner = new Scanner(System.in);
 

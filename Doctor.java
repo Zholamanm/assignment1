@@ -8,11 +8,6 @@ public abstract class Doctor implements TreatmentStrategy {
         this.equipment = equipment;
         this.speciality = speciality;
     }
-
-    public String getSpeciality() {
-        return speciality;
-    }
-
     public String getName() {
         return name;
     }

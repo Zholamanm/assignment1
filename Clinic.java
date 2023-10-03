@@ -3,7 +3,8 @@ import java.util.List;
 
 public class Clinic {
     private static Clinic instance;
-    private List<Doctor> doctors = new ArrayList<>();
+
+    private List<Medication> medications = new ArrayList<>();
 
     private Clinic() {}
 
@@ -16,5 +17,22 @@ public class Clinic {
             }
         }
         return instance;
+    }
+
+    public void addMedication(Medication medication) {
+        medications.add(medication);
+    }
+
+    public List<Medication> getAllMedications() {
+        return medications;
+    }
+
+    public Medication getMedicationByName(String name) {
+        for (Medication med : medications) {
+            if (med.getName().equals(name)) {
+                return med;
+            }
+        }
+        return null;
     }
 }
