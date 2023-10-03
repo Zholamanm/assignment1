@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DoctorsDatabase {
-    private HashMap<String, List<String>> doctors;
 
     public DoctorsDatabase() {
-        doctors = new HashMap<>();
+        HashMap<String, List<String>> doctors = new HashMap<>();
     }
 
     public List<String> getDoctorsBySpeciality(String speciality) {
