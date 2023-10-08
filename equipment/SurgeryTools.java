@@ -1,3 +1,6 @@
+package equipment;
+
+
 public class SurgeryTools implements MedicalEquipment {
     @Override
     public void use() {

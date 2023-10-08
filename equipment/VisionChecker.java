@@ -1,3 +1,7 @@
+package equipment;
+
+
+
 public class VisionChecker implements MedicalEquipment {
     @Override
     public void use() {

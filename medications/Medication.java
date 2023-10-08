@@ -1,4 +1,8 @@
-public class Medication {
+package medications;
+
+import medications.IMedication;
+
+public class Medication implements IMedication {
     private String name;
     private String description;
     private double price;
@@ -36,4 +40,5 @@ public class Medication {
     public String toString() {
         return  name + " - " + description + " - " + price;
     }
+
 }

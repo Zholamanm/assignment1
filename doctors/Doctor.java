@@ -1,5 +1,10 @@
+package doctors;
+
+import equipment.MedicalEquipment;
+import equipment.TreatmentStrategy;
+
 public abstract class Doctor implements TreatmentStrategy {
-    protected String name;
+    public String name;
     protected MedicalEquipment equipment;
     protected String speciality;
 

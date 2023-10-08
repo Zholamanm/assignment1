@@ -1,3 +1,8 @@
+package doctors;
+
+import doctors.Doctor;
+import equipment.MedicalEquipment;
+
 class Oculist extends Doctor {
     public Oculist(String name, MedicalEquipment equipment) {
         super(name, equipment, "Окулист");

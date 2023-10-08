@@ -1,3 +1,10 @@
+import doctors.Doctor;
+import doctors.DoctorSelection;
+import doctors.DoctorsDatabase;
+import medications.DiscountedMedication;
+import medications.IMedication;
+import medications.Medication;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,16 +56,27 @@ public class UserInterfaceManager {
 
     private void showMedInfo() {
         Clinic clinic = Clinic.getInstance();
-        Medication med1 = new Medication("Аспирин", "Обезболивающее", 50.00);
-        clinic.addMedication(med1);
-        Medication med2 = new Medication("Ибупрофен", "Обезболивающее", 100.00);
-        clinic.addMedication(med2);
-        Medication med3 = new Medication("Нимесил", "Обезболивающее", 150.00);
-        clinic.addMedication(med3);
-        Medication med4 = new Medication("Парацетамол", "Обезболивающее", 100.00);
-        clinic.addMedication(med4);
-        System.out.println(clinic.getAllMedications());
-
+        IMedication aspirin = new Medication("Аспирин", "Болеутоляющее", 10.0);
+        clinic.addMedication(aspirin);
+        IMedication discountedMedication = new DiscountedMedication(aspirin, 0.1);
+        clinic.addDiscountedMedication(discountedMedication);
+        System.out.println("1. Все медикаменты");
+        System.out.println("2. Акции и скидки");
+        int mainChoice = scanner.nextInt();
+        switch (mainChoice) {
+            case 1:
+                for (IMedication medication : clinic.getAllMedications()) {
+                    System.out.println(medication);
+                }
+            break;
+            case 2:
+                for (IMedication medication : clinic.getAllMedicationsDiscount()) {
+                    System.out.println(medication);
+                }
+            break;
+            default: System.out.println("Неверный выбор!");
+            break;
+        }
     }
 
     private void showDoctorInformation() {

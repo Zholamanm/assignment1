@@ -1,4 +1,14 @@
+package doctors;
+
 import db.DatabaseConnection;
+import doctors.Doctor;
+import doctors.Oculist;
+import doctors.Surgeon;
+import doctors.Therapist;
+import equipment.DiagnosticEquipment;
+import equipment.MedicalEquipment;
+import equipment.SurgeryTools;
+import equipment.VisionChecker;
 
 import java.sql.*;
 import java.util.ArrayList;

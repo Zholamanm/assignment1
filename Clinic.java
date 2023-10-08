@@ -1,10 +1,15 @@
+import medications.IMedication;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Clinic {
     private static Clinic instance;
 
-    private List<Medication> medications = new ArrayList<>();
+    private List<IMedication> medications = new ArrayList<>();
+
+    private List<IMedication> discountedMedications = new ArrayList<>();
+
 
     private Clinic() {}
 
@@ -19,20 +24,19 @@ public class Clinic {
         return instance;
     }
 
-    public void addMedication(Medication medication) {
+    public void addMedication(IMedication medication) {
         medications.add(medication);
     }
 
-    public List<Medication> getAllMedications() {
+    public void addDiscountedMedication(IMedication discountedMedication) {
+        discountedMedications.add(discountedMedication);
+    }
+
+    public List<IMedication> getAllMedications() {
         return medications;
     }
 
-    public Medication getMedicationByName(String name) {
-        for (Medication med : medications) {
-            if (med.getName().equals(name)) {
-                return med;
-            }
-        }
-        return null;
+    public List<IMedication> getAllMedicationsDiscount() {
+        return discountedMedications;
     }
 }

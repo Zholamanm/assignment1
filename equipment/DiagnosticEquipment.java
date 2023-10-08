@@ -1,3 +1,5 @@
+package equipment;
+
 public class DiagnosticEquipment implements MedicalEquipment {
     @Override
     public void use() {

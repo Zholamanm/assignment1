@@ -35,7 +35,7 @@ public class DatabaseInitializer {
             int rowCount = rs.getInt(1);
 
             if (rowCount == 0) {
-                stmt.execute("INSERT INTO doctors (name, speciality, equipment_type) VALUES ('Окулист Анна', 'Окулист', 'VisionChecker'), ('Окулист Виктор', 'Окулист', 'VisionChecker'), ('Терапевт Ирина', 'Терапевт', 'DiagnosticEquipment'), ('Терапевт Максим', 'Терапевт', 'DiagnosticEquipment'), ('Хирург Олег', 'Хирург', 'SurgeryTools'), ('Хирург Лилия', 'Хирург', 'SurgeryTools')");
+                stmt.execute("INSERT INTO doctors (name, speciality, equipment_type) VALUES ('Окулист Анна', 'Окулист', 'equipment.VisionChecker'), ('Окулист Виктор', 'Окулист', 'equipment.VisionChecker'), ('Терапевт Ирина', 'Терапевт', 'equipment.DiagnosticEquipment'), ('Терапевт Максим', 'Терапевт', 'equipment.DiagnosticEquipment'), ('Хирург Олег', 'Хирург', 'equipment.SurgeryTools'), ('Хирург Лилия', 'Хирург', 'equipment.SurgeryTools')");
             }
         } catch (SQLException e) {
             e.printStackTrace();
