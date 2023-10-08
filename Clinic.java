@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Clinic {
-    private static Clinic instance;
+    private static volatile Clinic instance;
 
-    private List<IMedication> medications = new ArrayList<>();
+    private final List<IMedication> medications = new ArrayList<>();
 
-    private List<IMedication> discountedMedications = new ArrayList<>();
+    private final List<IMedication> discountedMedications = new ArrayList<>();
 
 
     private Clinic() {}

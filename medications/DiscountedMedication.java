@@ -1,10 +1,7 @@
 package medications;
 
-import medications.IMedication;
-import medications.MedicationDecorator;
-
 public class DiscountedMedication extends MedicationDecorator {
-    private double discount; // Например, 0.1 для 10%
+    private final double discount; // Например, 0.1 для 10%
 
     public DiscountedMedication(IMedication baseMedication, double discount) {
         super(baseMedication);

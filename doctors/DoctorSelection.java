@@ -1,7 +1,5 @@
 package doctors;
 
-import doctors.DoctorsDatabase;
-
 import java.util.List;
 import java.util.Scanner;
 

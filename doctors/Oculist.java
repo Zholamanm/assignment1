@@ -1,6 +1,5 @@
 package doctors;
 
-import doctors.Doctor;
 import equipment.MedicalEquipment;
 
 class Oculist extends Doctor {

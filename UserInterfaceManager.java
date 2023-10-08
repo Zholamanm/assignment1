@@ -14,8 +14,8 @@ import java.util.Date;
 
 public class UserInterfaceManager {
 
-    private DoctorsDatabase database;
-    private Scanner scanner;
+    private final DoctorsDatabase database;
+    private final Scanner scanner;
 
     public UserInterfaceManager(DoctorsDatabase database, Scanner scanner) {
         this.database = database;
@@ -33,24 +33,12 @@ public class UserInterfaceManager {
 
         int mainChoice = scanner.nextInt();
         switch (mainChoice) {
-            case 1:
-                showDoctorInformation();
-                break;
-            case 2:
-                System.out.println("Функционал получения справок еще не реализован.");
-                break;
-            case 3:
-                bookAppointment();
-                break;
-            case 4:
-                findDoctorAvailable();
-                break;
-            case 5:
-                showMedInfo();
-                break;
-            default:
-                System.out.println("Неверный выбор.");
-                break;
+            case 1 -> showDoctorInformation();
+            case 2 -> System.out.println("Функционал получения справок еще не реализован.");
+            case 3 -> bookAppointment();
+            case 4 -> findDoctorAvailable();
+            case 5 -> showMedInfo();
+            default -> System.out.println("Неверный выбор.");
         }
     }
 
@@ -64,18 +52,17 @@ public class UserInterfaceManager {
         System.out.println("2. Акции и скидки");
         int mainChoice = scanner.nextInt();
         switch (mainChoice) {
-            case 1:
+            case 1 -> {
                 for (IMedication medication : clinic.getAllMedications()) {
                     System.out.println(medication);
                 }
-            break;
-            case 2:
+            }
+            case 2 -> {
                 for (IMedication medication : clinic.getAllMedicationsDiscount()) {
                     System.out.println(medication);
                 }
-            break;
-            default: System.out.println("Неверный выбор!");
-            break;
+            }
+            default -> System.out.println("Неверный выбор!");
         }
     }
 
@@ -102,7 +89,7 @@ public class UserInterfaceManager {
         String userInput = scanner.nextLine();
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
-        Date appointmentDate = null;
+        Date appointmentDate;
         try {
             appointmentDate = sdf.parse(userInput);
         } catch (ParseException e) {
@@ -137,7 +124,7 @@ public class UserInterfaceManager {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd/MM/yyyy");
         String currentFormattedDate = sdf.format(new Date());
 
-        Date appointmentTime = null;
+        Date appointmentTime;
         try {
             appointmentTime = sdf.parse(currentFormattedDate);
         } catch (ParseException e) {

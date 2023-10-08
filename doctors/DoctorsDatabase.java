@@ -1,10 +1,6 @@
 package doctors;
 
 import db.DatabaseConnection;
-import doctors.Doctor;
-import doctors.Oculist;
-import doctors.Surgeon;
-import doctors.Therapist;
 import equipment.DiagnosticEquipment;
 import equipment.MedicalEquipment;
 import equipment.SurgeryTools;
@@ -104,15 +100,9 @@ public class DoctorsDatabase {
                 MedicalEquipment equipment = createEquipment(equipmentType);
 
                 switch (speciality) {
-                    case "Окулист":
-                        doctor = new Oculist(name, equipment);
-                        break;
-                    case "Терапевт":
-                        doctor = new Therapist(name, equipment);
-                        break;
-                    case "Хирург":
-                        doctor = new Surgeon(name, equipment);
-                        break;
+                    case "Окулист" -> doctor = new Oculist(name, equipment);
+                    case "Терапевт" -> doctor = new Therapist(name, equipment);
+                    case "Хирург" -> doctor = new Surgeon(name, equipment);
                 }
             }
 
@@ -164,16 +154,12 @@ public class DoctorsDatabase {
 
 
     private MedicalEquipment createEquipment(String equipmentType) {
-        switch (equipmentType) {
-            case "SurgeryTools":
-                return new SurgeryTools();
-            case "VisionChecker":
-                return new VisionChecker();
-            case "DiagnosticEquipment":
-                return new DiagnosticEquipment();
-            default:
-                throw new IllegalArgumentException("Unknown equipment type: " + equipmentType);
-        }
+        return switch (equipmentType) {
+            case "SurgeryTools" -> new SurgeryTools();
+            case "VisionChecker" -> new VisionChecker();
+            case "DiagnosticEquipment" -> new DiagnosticEquipment();
+            default -> throw new IllegalArgumentException("Unknown equipment type: " + equipmentType);
+        };
     }
 
 
