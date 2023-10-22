@@ -19,6 +19,11 @@ public class DiscountedMedication extends MedicationDecorator {
     }
 
     @Override
+    public String getName() {
+        return baseMedication.getName();
+    }
+
+    @Override
     public String toString() {
         return baseMedication.toString() + " СКИДКА - " + getPrice();
     }

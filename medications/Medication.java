@@ -19,9 +19,9 @@ public class Medication implements IMedication {
         return description;
     }
 
-//    public String getName() {
-//        return name;
-//    }
+    public String getName() {
+        return name;
+    }
 //
 //    public void setDescription(String description) {
 //        this.description = description;

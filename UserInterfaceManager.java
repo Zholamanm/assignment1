@@ -1,9 +1,7 @@
 import doctors.Doctor;
 import doctors.DoctorSelection;
 import doctors.DoctorsDatabase;
-import medications.DiscountedMedication;
-import medications.IMedication;
-import medications.Medication;
+import medications.*;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -42,24 +40,63 @@ public class UserInterfaceManager {
         }
     }
 
+    private void buyMedication(IMedication medication) {
+        Command buyCommand = new BuyMedicationCommand(medication);
+        buyCommand.execute();
+    }
+
     private void showMedInfo() {
         Clinic clinic = Clinic.getInstance();
         IMedication aspirin = new Medication("Аспирин", "Болеутоляющее", 10.0);
         clinic.addMedication(aspirin);
-        IMedication discountedMedication = new DiscountedMedication(aspirin, 0.1);
+        IMedication discountedMedication = new DiscountedMedication(aspirin, 0.2);
         clinic.addDiscountedMedication(discountedMedication);
+        IMedication paracetamol = new Medication("Парацетамол", "Болеутоляющее", 10.0);
+        clinic.addMedication(paracetamol);
+        IMedication discountedMedication2 = new DiscountedMedication(paracetamol, 0.2);
+        clinic.addDiscountedMedication(discountedMedication2);
+        IMedication ibuprofen = new Medication("Ибупрофен", "Болеутоляющее", 10.0);
+        clinic.addMedication(ibuprofen);
+        IMedication discountedMedication3 = new DiscountedMedication(ibuprofen, 0.2);
+        clinic.addDiscountedMedication(discountedMedication3);
+        IMedication ciprolet = new Medication("Ципролет", "Болеутоляющее", 10.0);
+        clinic.addMedication(ciprolet);
+        IMedication discountedMedication4 = new DiscountedMedication(ciprolet, 0.2);
+        clinic.addDiscountedMedication(discountedMedication4);
         System.out.println("1. Все медикаменты");
         System.out.println("2. Акции и скидки");
+        System.out.println("3. Купить медикамент");
         int mainChoice = scanner.nextInt();
         switch (mainChoice) {
             case 1 -> {
                 for (IMedication medication : clinic.getAllMedications()) {
+                    IMedicationPriceInDollars medicationInDollars = new MedicationPriceAdapter(medication);
+                    System.out.println("Цена в долларах");
+                    System.out.println(medicationInDollars);
+                    System.out.println("Цена в евро");
                     System.out.println(medication);
                 }
             }
             case 2 -> {
                 for (IMedication medication : clinic.getAllMedicationsDiscount()) {
+                    IMedicationPriceInDollars medicationInDollars = new MedicationPriceAdapter(medication);
+                    System.out.println("Цена в долларах");
+                    System.out.println(medicationInDollars);
+                    System.out.println("Цена в евро");
                     System.out.println(medication);
+                }
+            }
+            case 3 -> {
+                System.out.println("Выберите медикамент для покупки:");
+                List<IMedication> allMedications = Clinic.getInstance().getAllMedications();
+                for (int i = 0; i < allMedications.size(); i++) {
+                    System.out.println((i + 1) + ". " + allMedications.get(i));
+                }
+                int choice = scanner.nextInt();
+                if (choice > 0 && choice <= allMedications.size()) {
+                    buyMedication(allMedications.get(choice - 1));
+                } else {
+                    System.out.println("Неверный выбор!");
                 }
             }
             default -> System.out.println("Неверный выбор!");
