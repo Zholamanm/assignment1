@@ -2,6 +2,7 @@ import doctors.Doctor;
 import doctors.DoctorSelection;
 import doctors.DoctorsDatabase;
 import medications.*;
+import test.*;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -27,6 +28,7 @@ public class UserInterfaceManager {
         System.out.println("3. Запись на прием");
         System.out.println("4. Поиск докторов которые сейчас свободны");
         System.out.println("5. Поиск медикаментов");
+        System.out.println("6. Выдача нализов");
         System.out.print("Введите номер выбора: ");
 
         int mainChoice = scanner.nextInt();
@@ -36,6 +38,7 @@ public class UserInterfaceManager {
             case 3 -> bookAppointment();
             case 4 -> findDoctorAvailable();
             case 5 -> showMedInfo();
+            case 6 -> showAnalysisInfo();
             default -> System.out.println("Неверный выбор.");
         }
     }
@@ -43,6 +46,40 @@ public class UserInterfaceManager {
     private void buyMedication(IMedication medication) {
         Command buyCommand = new BuyMedicationCommand(medication);
         buyCommand.execute();
+    }
+
+    private void showAnalysisInfo() {
+        MedicalTestFactory factory = new MedicalTestFactory();
+        System.out.print("Введите ваше имя: ");
+        scanner.nextLine();
+        String patientName = scanner.nextLine();
+        MedicalTestWithNotifications bloodTest = (BloodTest) factory.getTest("BLOOD");
+        MedicalTestWithNotifications urineTest = (UrinetTest) factory.getTest("URINE");
+        MedicalTestWithNotifications salivaTest = (SalivaTest) factory.getTest("SALIVA");
+
+        Patient patient1 = new Patient(patientName);
+        System.out.println(patient1.getName());
+
+        System.out.println("1. Blood test");
+        System.out.println("2. Urine test");
+        System.out.println("3. Saliva test");
+        int mainChoice = scanner.nextInt();
+        scanner.nextLine();
+        switch (mainChoice) {
+            case 1 -> {
+                bloodTest.registerObserver(patient1);
+                bloodTest.takeSample();
+            }
+            case 2 -> {
+                urineTest.registerObserver(patient1);
+                urineTest.takeSample();
+            }
+            case 3 -> {
+                salivaTest.registerObserver(patient1);
+                salivaTest.takeSample();
+            }
+            default -> System.out.println("Неверный выбор!");
+        }
     }
 
     private void showMedInfo() {

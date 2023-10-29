@@ -1,7 +1,7 @@
 package medications;
 
 public class DiscountedMedication extends MedicationDecorator {
-    private final double discount; // Например, 0.1 для 10%
+    private final double discount;
 
     public DiscountedMedication(IMedication baseMedication, double discount) {
         super(baseMedication);

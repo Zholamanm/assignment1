@@ -21,4 +21,3 @@ public class BuyMedicationCommand implements Command {
         System.out.println("-------------------");
     }
 }
-
