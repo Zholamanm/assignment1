@@ -1,7 +1,10 @@
 "# assignment1"
 Name of your final project: eMed(online clinic)
+
 Group: SE-2205
+
 Team members: Zholaman Marshiitov
+
 Project Overview:
 
 Information about the project:
