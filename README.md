@@ -1,25 +1,24 @@
-"# assignment1"
-Name of your final project: eMed(online clinic)
+Final project: eMed(online clinic)
 
 Group: SE-2205
 
 Team members: Zholaman Marshiitov
 
-Project Overview:
+**Project Overview:**
 
-Information about the project:
+**Information about the project:**
 
-This project is a Java-based console application designed to manage patient-doctor interactions within a medical facility. It utilizes several design patterns and Java features to organize a system that handles doctors' information, medical tests, appointments, and medication management.
+- This project is a Java-based console application designed to manage patient-doctor interactions within a medical facility. It utilizes several design patterns and Java features to organize a system that handles doctors' information, medical tests, appointments, and medication management.
 
-Idea of the project:
+**Idea of the project:**
 
-The core idea is to facilitate patients' access to medical services, such as finding information about doctors, booking appointments, searching for available doctors, obtaining medical test results, and purchasing medications. The system aims to streamline these processes using a user-friendly command-line interface.
+- The core idea is to facilitate patients' access to medical services, such as finding information about doctors, booking appointments, searching for available doctors, obtaining medical test results, and purchasing medications. The system aims to streamline these processes using a user-friendly command-line interface.
 
-Purpose of the work:
+**Purpose of the work:**
 
-The primary purpose of this software is to enhance the efficiency of healthcare administration by automating routine tasks, thereby reducing wait times, minimizing administrative burdens, and improving the overall patient care experience.
+- The primary purpose of this software is to enhance the efficiency of healthcare administration by automating routine tasks, thereby reducing wait times, minimizing administrative burdens, and improving the overall patient care experience.
 
-Objectives of the work:
+**Objectives of the work:**
 
 - To create a centralized platform for managing healthcare-related activities.
 - To implement a user-friendly interface for patients and administrative staff.
