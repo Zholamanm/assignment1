@@ -50,12 +50,13 @@ public class UserInterfaceManager {
 
     private void showAnalysisInfo() {
         MedicalTestFactory factory = new MedicalTestFactory();
+        TestNotificationSubject notificationSubject = new TestNotificationSubject();
         System.out.print("Введите ваше имя: ");
         scanner.nextLine();
         String patientName = scanner.nextLine();
-        MedicalTestWithNotifications bloodTest = (BloodTest) factory.getTest("BLOOD");
-        MedicalTestWithNotifications urineTest = (UrinetTest) factory.getTest("URINE");
-        MedicalTestWithNotifications salivaTest = (SalivaTest) factory.getTest("SALIVA");
+        MedicalTest bloodTest = factory.getTest("BLOOD", notificationSubject);
+        MedicalTest urineTest = factory.getTest("URINE", notificationSubject);
+        MedicalTest salivaTest = factory.getTest("SALIVA", notificationSubject);
 
         Patient patient1 = new Patient(patientName);
         System.out.println(patient1.getName());
@@ -67,15 +68,15 @@ public class UserInterfaceManager {
         scanner.nextLine();
         switch (mainChoice) {
             case 1 -> {
-                bloodTest.registerObserver(patient1);
+                notificationSubject.registerObserver(patient1);
                 bloodTest.takeSample();
             }
             case 2 -> {
-                urineTest.registerObserver(patient1);
+                notificationSubject.registerObserver(patient1);
                 urineTest.takeSample();
             }
             case 3 -> {
-                salivaTest.registerObserver(patient1);
+                notificationSubject.registerObserver(patient1);
                 salivaTest.takeSample();
             }
             default -> System.out.println("Неверный выбор!");
